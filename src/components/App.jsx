@@ -7,7 +7,7 @@ import { GlobalStyle } from './styles/GlobalStyle';
 
 import Home from './Home';
 import TopAlbums from './TopAlbums';
-import Album from './Album';
+import AlbumDetails from './AlbumDetails';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/topAlbums' component={TopAlbums} />
-          <Route exact path='/topAlbums/:album_id' component={Album} />
+          <Route exact path='/topAlbums/:album_id' component={AlbumDetails} />
           <Redirect to='/' />
         </Switch>
       </ThemeProvider>

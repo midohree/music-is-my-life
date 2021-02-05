@@ -18,6 +18,19 @@ const reducers = {
     state.isLoading = false;
     state.error = error;
   },
+  searchAlbum: (state, { payload: inputValue }) => {
+    // if (state.albumList) {
+    // const titles = state.albumList.map(album => {
+    //   return album.title.label.trim();
+    // });
+
+    console.log(inputValue);
+    let filtered =  state.albumList.map.filter(album => {
+      album.id.attributes['im:id'] === "1552230196";
+    });
+    console.log(filtered);
+    // }
+  },
 };
 
 export const topAlbumsSlice = createSlice({
