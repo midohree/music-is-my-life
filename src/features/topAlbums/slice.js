@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   albumList: null,
   error: null,
+  searchResult: null,
 };
 const reducers = {
   loadAlbums: state => {
@@ -18,6 +19,9 @@ const reducers = {
     state.isLoading = false;
     state.error = error;
   },
+  reorderAlbums: (state, { payload: list }) => {
+    state.albumList = list;
+  },
 };
 
 export const topAlbumsSlice = createSlice({
@@ -30,8 +34,9 @@ const selectAllState = createSelector(
   state => state.isLoading,
   state => state.albumList,
   state => state.error,
-  (isLoading, albumList, error) => {
-    return { isLoading, albumList, error };
+  state => state.searchResult,
+  (isLoading, albumList, error, searchResult) => {
+    return { isLoading, albumList, error, searchResult };
   },
 );
 

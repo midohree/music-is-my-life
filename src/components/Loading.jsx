@@ -5,6 +5,14 @@ import Loader from 'react-loader-spinner';
 import { theme } from './styles/theme';
 import { fadeIn } from './styles/keyframes';
 
+const Loading = ({ children }) => {
+  return (
+    <Wrapper>
+      {children || <StyledLoader type='Circles' color={theme.salmon} width={55} height={55}/>}
+    </Wrapper>
+  );
+};
+
 const Wrapper = styled.div`
   width: inherit;
   display: flex;
@@ -19,16 +27,8 @@ const StyledLoader = styled(Loader)`
   animation: 0.6s ${fadeIn};
 `;
 
-const Loading = ({ children }) => {
-  return (
-    <Wrapper>
-      {children || <StyledLoader type='Circles' color={theme.salmon} width={55} height={55}/>}
-    </Wrapper>
-  );
-};
+export default Loading;
 
 Loading.propTypes = {
   children: PropTypes.node,
 };
-
-export default Loading;
