@@ -9,6 +9,7 @@ function Album({
   title,
   photoUrl,
   date,
+  search,
 }) {
   return (
     <StyledLink to={`/topAlbums/${id}`} >
@@ -63,4 +64,5 @@ Album.propTypes = {
   photoUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  search: PropTypes.bool.isRequired,
 };

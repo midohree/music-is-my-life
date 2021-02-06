@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -17,6 +17,7 @@ function AlbumDetails({ match }) {
     date: null,
     category: null,
     rights: null,
+    artist: null,
   });
   const { albumList } = useSelector(topAlbumsSelector.all);
 
@@ -24,18 +25,20 @@ function AlbumDetails({ match }) {
     const id = match.params['album_id'];
 
     const targetAlbum = albumList.filter(album => {
-      return album.id.attributes['im:id'] === id;
+      return album.id === id;
     });
     const data = targetAlbum[0];
 
     setAlbum({
       ...album,
-      id: data.id.attributes['im:id'],
-      photoUrl: data['im:image'][0].label,
-      title: data.title.label,
-      date: data['im:releaseDate'].attributes.label,
-      category: data.category.attributes.term,
-      rights: data.rights.label,
+      id: data.id,
+      photoUrl: data.photoUrl,
+      title: data.title,
+      date: data.formatDate,
+      artist: data.artist,
+      category: data.category,
+      rights: data.rights,
+
     });
   }, []);
 
@@ -49,7 +52,7 @@ function AlbumDetails({ match }) {
         </div>
         <div>
           <h6>{album.category}</h6>
-          <h4>{album.title}</h4>
+          <h4>{album.title}{album.artist}</h4>
           <h6>{album.date}</h6>
           <h6>{album.rights}</h6>
         </div>
@@ -76,6 +79,7 @@ const Content = styled.div`
   width: 40%;
   overflow-y: auto;
   border: 1px solid ${({theme}) => theme.color.melonGreen};
+  padding: 0 20px;
 
   img {
     height: inherit;

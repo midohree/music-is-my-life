@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   albumList: null,
   error: null,
+  searchResult: null,
 };
 const reducers = {
   loadAlbums: state => {
@@ -18,18 +19,8 @@ const reducers = {
     state.isLoading = false;
     state.error = error;
   },
-  searchAlbum: (state, { payload: inputValue }) => {
-    // if (state.albumList) {
-    // const titles = state.albumList.map(album => {
-    //   return album.title.label.trim();
-    // });
-
-    console.log(inputValue);
-    let filtered =  state.albumList.map.filter(album => {
-      album.id.attributes['im:id'] === "1552230196";
-    });
-    console.log(filtered);
-    // }
+  reorderAlbums: (state, { payload: list }) => {
+    state.albumList = list;
   },
 };
 
@@ -43,8 +34,9 @@ const selectAllState = createSelector(
   state => state.isLoading,
   state => state.albumList,
   state => state.error,
-  (isLoading, albumList, error) => {
-    return { isLoading, albumList, error };
+  state => state.searchResult,
+  (isLoading, albumList, error, searchResult) => {
+    return { isLoading, albumList, error, searchResult };
   },
 );
 
