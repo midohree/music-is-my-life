@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Music Is My Life
 
-## Available Scripts
+음악 인기 차트 탑 100을 보여주는 웹 애플리케이션입니다.
 
-In the project directory, you can run:
+## 사전 준비
 
-### `npm start`
+1. Local 환경에서 실행하기 위한 별도의 사전 준비는 필요하지 않습니다.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. 프로젝트를 클론 받습니다.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
 
-### `npm test`
+git clone https://github.com/midohree/music-is-my-life.git
+cd music-is-my-life
+npm install
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `npm run build`
+3. 애플리케이션을 실행합니다.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+## 기술 스택
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| Front-end              |
+| :--------------------- |
+| ES2015+                |
+| React                  |
+| React-router-dom       |
+| Redux-toolkit          |
+| Redux-saga             |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 주요 기능
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. 현재 인기있는 노래 100곡의 리스트를 제공합니다.
+2. 앨범을 클릭하면 앨범의 상세 정보가 보입니다.
+3. 앨범 발매일과 가수 이름을 기준으로 오름차순 / 내림차순 정렬이 가능합니다.
+4. 앨범 이름을 검색 할 수 있는 기능을 추가했습니다.
 
-## Learn More
+### 상세 내용
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**리덕스 툴킷과 리덕스 사가**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+redux-saga는 애플리케이션에서 서버로부터 데이터를 요청하는 fetch같은 비동기 로직이나 브라우저 캐시에 접근하는 것과 같은 순수하지 않은 것들, 즉, 사이드이펙트를 더 효과적으로 관리하려고 만들어졌습니다. 또한 redux 애플리케이션의 모든 상태값에 접근하고 redux 액션들을 디스패치 할 수 있기 때문에 데이터값을 전역상태로 설정해두면 useSelector를 통해 데이터 값을 용이하게 가져올 이용할 수 있기 때문에 추후에 애플리케이션의 확장성을 고려했을 때에도 적합하다고 판단되어 redux-saga를 사용했습니다. 또한 데이터 요청에 성공 했을 때, 실패했을 때를 각각 나눌 수 있어서 하나의 기능이더라도 상태에 맞게 예외처리를 하거나 적절한 뷰를 보여줄 수 있게끔 구현했습니다.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+또한 redux-toolkit을 사용해 actions와 reducer를 하나로 합쳐주는 createSlice를 통해 기능별로 폴더를 나누는 형식의 ducks pattern을 사용해 디렉토리 구조를 새로 짜보았습니다. 기존에 redux를 사용했을 때에는 actions, reducers, constatns등 하나의 기능을 구현하기 위해 파일을 모두 분리했어야 했는데 redux toolkit의 slice를 통해 actions와 reducers를 통합해 보다 명시적인 폴더 구성을 이루고자 했습니다.
